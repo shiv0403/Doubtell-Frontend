@@ -1,0 +1,16 @@
+.trending {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.trending-doubt:not(:last-child) {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  border-bottom: 1px solid black;
+}
+
+.trending-doubt > p {
+  font-weight: 500;
+}
