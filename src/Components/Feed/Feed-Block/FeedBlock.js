@@ -12,7 +12,16 @@ function FeedBlock(props) {
       <div className="feedBlock-header">
         <div className="feedBlock-author">
           <Avatar />
-          <p style={{ marginLeft: "10px" }}>Shivansh Gupta</p>
+          <p
+            style={{
+              marginLeft: "10px",
+              fontWeight: "700",
+              fontSize: "14px",
+              letterSpacing: "0.5px",
+            }}
+          >
+            Shivansh Gupta
+          </p>
         </div>
         <div className="feedBlock-more">
           <MoreHorizIcon />

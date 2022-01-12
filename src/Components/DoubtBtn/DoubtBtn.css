@@ -1,0 +1,30 @@
+.doubt-btn {
+  position: absolute;
+  top: 68%;
+  left: 7%;
+}
+
+.doubt-btn-btn {
+  width: 230px;
+  padding: 10px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 700;
+  background-color: #2b2b2b;
+  color: #fff;
+  transition: all 0.2s ease-in-out;
+}
+
+.doubt-btn-btn:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.doubt-btn-label {
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: gray;
+}

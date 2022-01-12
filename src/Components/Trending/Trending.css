@@ -1,16 +1,32 @@
 .trending {
-  border: 1px solid black;
-  padding: 10px;
+  border: 1px solid #bfbdbb;
   border-radius: 10px;
+  margin-top: 30px;
+  position: absolute;
+  top: 70px;
+  right: 50px;
+  width: 20%;
+}
+
+.trending-heading {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 10px 0;
+  text-align: center;
+  background-color: #2b2b2b;
+  color: #fff;
+}
+
+.trending-doubt {
+  cursor: pointer;
+  padding: 15px;
 }
 
 .trending-doubt:not(:last-child) {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  margin-top: 10px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #bfbdbb;
 }
 
 .trending-doubt > p {
   font-weight: 500;
+  font-size: 13px;
 }

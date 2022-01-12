@@ -4,17 +4,18 @@ import Tags from "../Tags/Tags";
 import "./Home.css";
 import Feed from "../Feed/Feed";
 import Trending from "../Trending/Trending";
+import DoubtBtn from "../DoubtBtn/DoubtBtn";
 
 function Home(props) {
   return (
     <div className="home">
       <div className="home-subjects">
         <Subjects />
+        <DoubtBtn />
       </div>
       <div className="home-feed">
         <Feed />
       </div>
-      {/*<Tags />*/}
       <div className="home-trend">
         <Trending />
       </div>
