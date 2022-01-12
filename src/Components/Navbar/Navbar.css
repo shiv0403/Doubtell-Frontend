@@ -1,0 +1,71 @@
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0px 2px 3px -2px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 2px 3px -2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 2px 3px -2px rgba(0, 0, 0, 0.75);
+  background-color: #2b2b2b;
+}
+
+.navbar-logo {
+  color: #fff;
+  font-style: italic;
+  cursor: pointer;
+}
+
+.navbar-search {
+  width: 40%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-search input {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-right: 7px;
+  outline: none;
+}
+
+.navbar-searchIcon {
+  color: #fff;
+}
+
+.navbar-searchIcon:hover {
+  cursor: pointer;
+}
+
+.navbar-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-buttons > button {
+  margin-right: 10px;
+  padding: 5px;
+  width: auto;
+  border-radius: 5px;
+  outline: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.navbar-buttons > button:hover {
+  cursor: pointer;
+}
+
+.navbar-login {
+  background-color: #fff;
+  font-weight: 700;
+  border: 1px solid #fff;
+}
+
+.navbar-signup {
+  background-color: #2b2b2b;
+  border: 1px solid #fff;
+  color: #fff;
+  font-weight: 700;
+}
