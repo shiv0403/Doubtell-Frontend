@@ -2,11 +2,16 @@ import React from "react";
 import "./AnswerPage.css";
 import Trending from "../Trending/Trending";
 import Answer from "./Answer/Answer";
+import Question from "./Question/Question";
 
 function AnswerPage(props) {
   return (
     <div className="answerPage">
       <div className="answerPage-answer">
+        <Question />
+        <Answer />
+        <Answer />
+        <Answer />
         <Answer />
       </div>
       <div className="answerPage-trending">

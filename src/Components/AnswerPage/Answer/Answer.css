@@ -1,7 +1,7 @@
 .answer {
-  width: 40%;
+  width: 60%;
   border: 1px solid #c4c3c2;
-  margin: 40px auto;
+  margin: auto auto 40px auto;
 }
 
 .answer-icon {
@@ -47,7 +47,7 @@
 
 .answer-main {
   margin: 10px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .answer-footer {

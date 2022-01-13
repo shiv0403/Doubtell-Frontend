@@ -1,11 +1,6 @@
 .trending {
   border: 1px solid #bfbdbb;
   border-radius: 10px;
-  margin-top: 30px;
-  position: absolute;
-  top: 70px;
-  right: 50px;
-  width: 20%;
 }
 
 .trending-heading {

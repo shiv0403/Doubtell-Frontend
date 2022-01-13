@@ -9,3 +9,11 @@
 .home-left {
   margin-left: 100px;
 }
+
+.home-trend {
+  margin-top: 30px;
+  position: absolute;
+  top: 70px;
+  right: 50px;
+  width: 20%;
+}

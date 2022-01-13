@@ -1,0 +1,9 @@
+.answerPage {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin: 40px 100px;
+}
+.answerPage-trending {
+  width: 60%;
+}
