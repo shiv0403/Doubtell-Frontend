@@ -1,6 +1,7 @@
 import React from "react";
 import "./Navbar.css";
 import SearchIcon from "@mui/icons-material/Search";
+import { Link } from "react-router-dom";
 
 function Navbar(props) {
   return (
@@ -17,8 +18,19 @@ function Navbar(props) {
         <SearchIcon className="navbar-searchIcon" />
       </div>
       <div className="navbar-buttons">
-        <button className="navbar-login">Login</button>
-        <button className="navbar-signup">Signup</button>
+        <button className="navbar-login">
+          <Link to={"/login"} style={{ textDecoration: "none", color: "#000" }}>
+            Login
+          </Link>
+        </button>
+        <button className="navbar-signup">
+          <Link
+            to={"/signup"}
+            style={{ textDecoration: "none", color: "#fff" }}
+          >
+            Sign Up
+          </Link>
+        </button>
       </div>
     </div>
   );
