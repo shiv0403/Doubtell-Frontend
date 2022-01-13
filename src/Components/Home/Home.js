@@ -1,6 +1,5 @@
 import React from "react";
 import Subjects from "../Subjects/Subjects";
-import Tags from "../Tags/Tags";
 import "./Home.css";
 import Feed from "../Feed/Feed";
 import Trending from "../Trending/Trending";
