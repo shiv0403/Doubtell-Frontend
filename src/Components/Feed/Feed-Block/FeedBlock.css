@@ -32,6 +32,15 @@
   margin-bottom: 10px;
 }
 
+.feedBlock-navigateLink {
+  color: #000;
+  text-decoration: none;
+}
+
+.feedBlock-navigateLink:hover {
+  text-decoration: underline;
+}
+
 .feedBlock-footer {
   display: flex;
   justify-content: space-between;

@@ -5,6 +5,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Avatar } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function FeedBlock(props) {
   return (
@@ -29,7 +30,11 @@ function FeedBlock(props) {
       </div>
       <div className="feedBlock-main">
         <div className="feedBlock-question">
-          <h3>Lorem ipsum dolor sit amet, consectetur adipisicing.</h3>
+          <h3>
+            <Link to={"/answer"} className={"feedBlock-navigateLink"}>
+              Lorem ipsum dolor sit amet, consectetur adipisicing.
+            </Link>
+          </h3>
         </div>
         <div className="feedBlock-answer">
           <p>

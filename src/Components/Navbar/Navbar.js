@@ -7,7 +7,11 @@ function Navbar(props) {
   return (
     <div className="navbar">
       <div className="navbar-logo">
-        <h1>DoubTell</h1>
+        <h1>
+          <Link to={"/"} style={{ textDecoration: "none", color: "#fff" }}>
+            DoubTell
+          </Link>
+        </h1>
       </div>
       <div className="navbar-search">
         <input
