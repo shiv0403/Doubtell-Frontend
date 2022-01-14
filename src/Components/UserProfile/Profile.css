@@ -1,0 +1,81 @@
+.profile {
+  width: 38%;
+  padding: 10px;
+  margin-left: 20%;
+  margin-top: 30px;
+  border: 1px solid #c4c3c2;
+}
+
+.profile-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.profile-personDetails {
+  display: flex;
+  align-items: center;
+}
+
+.profile-picImg {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.profile-details > p {
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.profile-followBtn {
+  width: 100%;
+  padding: 7px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-size: 15px;
+  color: #fff;
+  background-color: #2b2b2b;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+.profile-followBtn:hover {
+  cursor: pointer;
+}
+
+.profile-trending {
+  width: 20%;
+  position: absolute;
+  right: 10%;
+  top: 12%;
+}
+
+.profile-tabs {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.profile-tabs > li {
+  text-align: center;
+  font-weight: bold;
+  width: 100%;
+  padding: 10px;
+  background-color: #c4c3c2;
+}
+
+.profile-tabs > li:hover {
+  cursor: pointer;
+}
+
+.profile-feedBlocks {
+  width: 95%;
+  margin: auto;
+}
