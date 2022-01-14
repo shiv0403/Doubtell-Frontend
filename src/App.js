@@ -7,6 +7,7 @@ import Signup from "./Components/Signup/Signup";
 import Login from "./Components/Login/Login";
 import Profile from "./Components/UserProfile/Profile";
 import PostDoubt from "./Components/PostDoubt/PostDoubt";
+import AnswerDoubt from "./Components/AnswerDoubt/AnswerDoubt";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/post-doubt" element={<PostDoubt />} />
+        <Route path="/answer-doubt" element={<AnswerDoubt />} />
       </Routes>
     </div>
   );

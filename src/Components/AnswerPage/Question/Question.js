@@ -3,6 +3,7 @@ import "./Question.css";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import CreateIcon from "@mui/icons-material/Create";
 import ShareIcon from "@mui/icons-material/Share";
+import { Link } from "react-router-dom";
 
 function Question(props) {
   return (
@@ -29,9 +30,11 @@ function Question(props) {
           </div>
         </div>
         <div className="question-answer">
-          <button className="question-answerBtn">
-            <p>Answer</p> <CreateIcon style={{ fontSize: "1rem" }} />
-          </button>
+          <Link to={"/answer-doubt"}>
+            <button className="question-answerBtn">
+              <p>Answer</p> <CreateIcon style={{ fontSize: "1rem" }} />
+            </button>
+          </Link>
         </div>
       </div>
     </div>

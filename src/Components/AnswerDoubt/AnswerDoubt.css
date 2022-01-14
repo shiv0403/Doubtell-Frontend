@@ -1,0 +1,45 @@
+.ansDoubt-doubt {
+  width: 50%;
+  margin: 20px auto;
+  line-height: 1.5;
+}
+
+.ansDoubt-editor {
+  width: 50%;
+  margin: 30px auto;
+}
+
+.ansDoubt-buttons {
+  width: 50%;
+  margin: -10px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ansDoubt-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ansDoubt-form > button {
+  padding: 5px 5px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  background-color: #2b2b2b;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+}
+
+.ansDoubt-imgLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  background-color: #efeaea;
+}

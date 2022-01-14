@@ -7,3 +7,14 @@
   margin-right: 10px;
   font-weight: bold;
 }
+
+.postDoubt-desc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.postDoubt-editor {
+  width: 60%;
+  margin: auto;
+}
