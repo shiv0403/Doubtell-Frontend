@@ -1,0 +1,9 @@
+.postDoubt-uploadImg {
+  display: flex;
+  align-items: center;
+}
+
+.postDoubt-uploadImg > p {
+  margin-right: 10px;
+  font-weight: bold;
+}
