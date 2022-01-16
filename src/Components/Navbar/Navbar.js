@@ -2,8 +2,11 @@ import React from "react";
 import "./Navbar.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function Navbar(props) {
+  const email = useSelector((state) => state.email);
+
   return (
     <div className="navbar">
       <div className="navbar-logo">
@@ -27,6 +30,7 @@ function Navbar(props) {
             Login
           </Link>
         </button>
+        {email && <p style={{ color: "#fff", fontWeight: "bold" }}>{email}</p>}
         <button className="navbar-signup">
           <Link
             to={"/signup"}

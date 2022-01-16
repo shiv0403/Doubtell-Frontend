@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import "./SIgnup.css";
+import { signup } from "../../actions/authActions";
 
 function Signup(props) {
+  const [name, setName] = useState("");
+  const [age, setAge] = useState(0);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(signup({ name, age, email, password, confirmPassword }));
+  };
+
   return (
     <>
       <div className="signup">
@@ -12,12 +27,24 @@ function Signup(props) {
             <div className="signup-name">
               <label>Full Name</label>
               <br />
-              <input type="text" name="name" placeholder="John Doe" />
+              <input
+                type="text"
+                name="name"
+                placeholder="John Doe"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
             <div className="signup-age">
               <label>Age</label>
               <br />
-              <input type="number" name="age" placeholder="16" />
+              <input
+                type="number"
+                name="age"
+                placeholder="16"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+              />
             </div>
           </div>
           <label>Email</label>
@@ -26,19 +53,33 @@ function Signup(props) {
             type="email"
             name="email"
             placeholder={"example@example.com"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <br />
           <label>Password</label>
           <br />
-          <input type={"password"} name={"password"} />
+          <input
+            type={"password"}
+            name={"password"}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <br />
           <label>Confirm Password</label>
           <br />
-          <input type={"password"} name={"confirmPassword"} />
+          <input
+            type={"password"}
+            name={"confirmPassword"}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
           <br />
         </form>
         <div className={"signup-footer"}>
-          <button className={"signup-submit"}>SUBMIT</button>
+          <button className={"signup-submit"} onClick={handleSubmit}>
+            SUBMIT
+          </button>
           <p>
             <Link to={"/login"}>Already have an account?</Link>
           </p>
