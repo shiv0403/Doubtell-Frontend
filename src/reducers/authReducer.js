@@ -3,6 +3,7 @@ import {
   AUTH_LOADING,
   SIGNUP_LOGIN_SUCCESS,
   USER_LOADED,
+  LOGOUT_SUCCESS,
 } from "../actions/authActionTypes";
 
 import jwtDecode from "jwt-decode";
@@ -39,6 +40,15 @@ const authReducer = (state = initialState, action) => {
       return {
         loading: false,
         error: action.payload,
+      };
+    case LOGOUT_SUCCESS:
+      localStorage.removeItem("token");
+      return {
+        loading: false,
+        token: null,
+        name: null,
+        email: null,
+        id: null,
       };
     default:
       return state;

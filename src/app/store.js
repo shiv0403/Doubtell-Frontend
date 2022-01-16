@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import logger from "redux-logger";
-import authReducer from "../reducers/authReducer";
 import thunk from "redux-thunk";
+import rootReducer from "../reducers/rootReducer";
 
 const store = createStore(
-  authReducer,
+  rootReducer,
   composeWithDevTools(applyMiddleware(logger, thunk))
 );
 export default store;

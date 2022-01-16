@@ -2,10 +2,17 @@ import React from "react";
 import "./Navbar.css";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../actions/authActions";
 
 function Navbar(props) {
-  const email = useSelector((state) => state.email);
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.user.email);
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+  };
 
   return (
     <div className="navbar">
@@ -38,6 +45,9 @@ function Navbar(props) {
           >
             Sign Up
           </Link>
+        </button>
+        <button className={"navbar-login"} onClick={handleLogout}>
+          Logout
         </button>
       </div>
     </div>

@@ -3,6 +3,7 @@ import {
   SIGNUP_LOGIN_FAILURE,
   AUTH_LOADING,
   SIGNUP_LOGIN_SUCCESS,
+  LOGOUT_SUCCESS,
 } from "./authActionTypes";
 
 const authLoading = () => {
@@ -22,6 +23,12 @@ const signupLoginFailed = (err) => {
   return {
     type: SIGNUP_LOGIN_FAILURE,
     payload: err,
+  };
+};
+
+const logoutSuccess = () => {
+  return {
+    type: LOGOUT_SUCCESS,
   };
 };
 
@@ -55,9 +62,19 @@ export const login = (data) => {
   };
 };
 
+export const logout = () => {
+  return async (dispatch) => {
+    await axios.get("/api/auth/logout").then((res) => {
+      dispatch(logoutSuccess());
+      const data = res.data;
+      console.log(data.msg);
+    });
+  };
+};
+
 export const loadUser = () => {
   return (dispatch, getState) => {
-    const token = getState().token;
+    const token = getState().user.token;
     if (token) {
       dispatch({
         type: "USER_LOADED",
