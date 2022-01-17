@@ -41,8 +41,8 @@ function AnswerDoubt(props) {
     formData.append("img", img);
     try {
       axios.post("/api/upload-img/doubt-img", formData).then((response) => {
-        const data = response.data;
-        setUrl(data.url);
+        const url = response.data.url;
+        setUrl(url);
       });
     } catch (err) {
       console.log(err);
@@ -81,11 +81,13 @@ function AnswerDoubt(props) {
         <Editor
           apiKey={api_key}
           onInit={(evt, editor) => (editorRef.current = editor)}
-          initialValue="<p>This is the initial content of the editor.</p>"
+          initialValue=""
           init={{
             height: 400,
             menubar: true,
-            selector: "input",
+            selector: "textarea",
+            image_title: true,
+            automatic_uploads: true,
             plugins: [
               "advlist autolink lists link image charmap print preview anchor",
               "searchreplace visualblocks code fullscreen",
@@ -98,6 +100,38 @@ function AnswerDoubt(props) {
               "removeformat | help",
             content_style:
               "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+            file_picker_types: "image",
+            file_picker_callback: function (cb, value, meta) {
+              var input = document.createElement("input");
+              input.setAttribute("type", "file");
+              input.setAttribute("accept", "image/*");
+
+              input.onchange = function () {
+                var file = this.files[0];
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                  /*
+                    Note: Now we need to register the blob in TinyMCEs image blob
+                    registry. In the next release this part hopefully won't be
+                    necessary, as we are looking to handle it internally.
+                  */
+
+                  var id = "blobid" + new Date().getTime();
+                  var blobCache =
+                    window.tinymce.activeEditor.editorUpload.blobCache;
+                  var base64 = reader.result.split(",")[1];
+                  var blobInfo = blobCache.create(id, file, base64);
+                  blobCache.add(blobInfo);
+
+                  /* call the callback and populate the Title field with the file name */
+                  cb(blobInfo.blobUri(), { title: file.name });
+                };
+                reader.readAsDataURL(file);
+              };
+
+              input.click();
+            },
           }}
         />
       </div>
