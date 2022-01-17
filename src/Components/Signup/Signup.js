@@ -1,21 +1,25 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import "./SIgnup.css";
 import { signup } from "../../actions/authActions";
 
 function Signup(props) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const dispatch = useDispatch();
+  const id = useSelector((state) => state.user.id);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signup({ name, age, email, password, confirmPassword }));
+    navigate("/");
   };
 
   return (
