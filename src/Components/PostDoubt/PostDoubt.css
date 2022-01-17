@@ -1,20 +1,22 @@
-.postDoubt-uploadImg {
-  display: flex;
-  align-items: center;
+.postDoubt-heading {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-top: 30px;
 }
 
-.postDoubt-uploadImg > p {
-  margin-right: 10px;
-  font-weight: bold;
+.postDoubt-question {
+  width: 50%;
+  margin: 50px auto 10px auto;
 }
 
-.postDoubt-desc {
+.postDoubt-buttons {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  margin: auto;
 }
 
-.postDoubt-editor {
-  width: 60%;
-  margin: auto;
+.postDoubt-inputImg {
+  opacity: 1;
 }

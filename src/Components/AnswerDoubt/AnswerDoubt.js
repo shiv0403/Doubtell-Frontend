@@ -10,44 +10,8 @@ import DoneIcon from "@mui/icons-material/Done";
 
 const api_key = "miwj31pnzo4xtmtcglfy7grcgi74ha8xh8jqyrfhcc72a2xy";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  p: 4,
-};
-
 function AnswerDoubt(props) {
   const editorRef = useRef(null);
-  const [img, setImg] = useState("");
-  const [url, setUrl] = useState("");
-  const [open, setOpen] = React.useState(false);
-  const [doneCopy, setDoneCopy] = useState(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false);
-    setImg("");
-    setUrl("");
-  };
-
-  const handleUploadImg = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("img", img);
-    try {
-      axios.post("/api/upload-img/doubt-img", formData).then((response) => {
-        const url = response.data.url;
-        setUrl(url);
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const handleSubmit = () => {
     const content = editorRef.current.getContent();
@@ -61,12 +25,6 @@ function AnswerDoubt(props) {
       console.log(err);
     }
   };
-
-  function handleCopyLink() {
-    navigator.clipboard.writeText(url).then(() => {
-      setDoneCopy(true);
-    });
-  }
 
   return (
     <div className={"ansDoubt"}>
@@ -111,12 +69,6 @@ function AnswerDoubt(props) {
 
                 var reader = new FileReader();
                 reader.onload = function () {
-                  /*
-                    Note: Now we need to register the blob in TinyMCEs image blob
-                    registry. In the next release this part hopefully won't be
-                    necessary, as we are looking to handle it internally.
-                  */
-
                   var id = "blobid" + new Date().getTime();
                   var blobCache =
                     window.tinymce.activeEditor.editorUpload.blobCache;
@@ -136,46 +88,7 @@ function AnswerDoubt(props) {
         />
       </div>
       <div className="ansDoubt-buttons">
-        <Button onClick={handleOpen}>Add an Image</Button>
         <Button onClick={handleSubmit}>Submit Doubt</Button>
-      </div>
-
-      <div className="postDoubt-uploadImg">
-        {open && (
-          <div>
-            <Modal
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <Box sx={style}>
-                {url && (
-                  <div className="ansDoubt-imgLink">
-                    <p>{url}</p>
-                    {doneCopy ? (
-                      <DoneIcon />
-                    ) : (
-                      <ContentCopyIcon
-                        style={{ fontSize: "1.2rem" }}
-                        onClick={handleCopyLink}
-                      />
-                    )}
-                  </div>
-                )}
-                <form onSubmit={handleUploadImg} className={"ansDoubt-form"}>
-                  <input
-                    type={"file"}
-                    name={"local-image"}
-                    className={"ansDoubt-inputImg"}
-                    onChange={(e) => setImg(e.target.files[0])}
-                  />
-                  <button>Upload</button>
-                </form>
-              </Box>
-            </Modal>
-          </div>
-        )}
       </div>
     </div>
   );
