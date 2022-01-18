@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import DOMPurify from "dompurify";
 import "./Answer.css";
 import { Avatar } from "@mui/material";
 import VideocamIcon from "@mui/icons-material/Videocam";
@@ -8,23 +8,16 @@ import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ModeCommentIcon from "@mui/icons-material/ModeComment";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import axios from "../../../api/axios";
 
 function Answer({ answer }) {
-  const authorName = useSelector((state) => state.user.name);
-
-  useEffect(() => {
-    let answerDiv = document.getElementById("answer-main");
-    answerDiv.innerHTML = answer.answer;
-    console.log(answerDiv);
-  }, []);
-
   return (
     <div className="answer">
       <div className="answer-header">
         <div className="answer-author">
           <Avatar />
           <div className="answer-authorDetails">
-            <p className="answer-authorName">{authorName}</p>
+            <p className="answer-authorName">{answer.author_name}</p>
             <p className="answer-timestamp">{answer.updatedAt}</p>
           </div>
         </div>
@@ -33,7 +26,12 @@ function Answer({ answer }) {
           <MoreHorizIcon className="answer-icon" />
         </div>
       </div>
-      <div className="answer-main" id={"answer-main"}></div>
+
+      <div
+        className="answer-main"
+        id={"answer-main-id"}
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(answer.answer) }}
+      ></div>
       <div className="answer-footer">
         <div className="answer-like">
           <ThumbUpIcon className="answer-icon" />

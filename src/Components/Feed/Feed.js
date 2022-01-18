@@ -4,14 +4,13 @@ import FeedBlock from "./Feed-Block/FeedBlock";
 import axios from "../../api/axios";
 
 function Feed(props) {
-  const [doubts, setDoubts] = useState([]);
+  const [doubts, setDoubts] = useState("");
 
   useEffect(() => {
     async function getDoubts() {
       try {
         await axios.get("/api/doubt/get-doubts").then((res) => {
           const data = res.data;
-          console.log(data);
           setDoubts(data);
         });
       } catch (err) {
@@ -25,7 +24,9 @@ function Feed(props) {
     <div className="feed">
       {doubts &&
         doubts.map((doubt) => {
-          return <FeedBlock doubt={doubt} key={doubt._id} />;
+          if (doubt) {
+            return <FeedBlock doubt={doubt} key={doubt._id} />;
+          }
         })}
     </div>
   );

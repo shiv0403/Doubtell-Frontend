@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./SIgnup.css";
 import { signup } from "../../actions/authActions";
 
 function Signup(props) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const [name, setName] = useState("");
   const [age, setAge] = useState(0);
@@ -19,7 +19,7 @@ function Signup(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signup({ name, age, email, password, confirmPassword }));
-    navigate("/");
+    history.push("/");
   };
 
   return (
@@ -61,6 +61,7 @@ function Signup(props) {
             onChange={(e) => setEmail(e.target.value)}
           />
           <br />
+
           <label>Password</label>
           <br />
           <input

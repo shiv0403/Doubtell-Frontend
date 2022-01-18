@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { login } from "../../actions/authActions";
 
 function Login(props) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const id = useSelector((state) => state.user.id);
+  const history = useHistory();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,7 +14,7 @@ function Login(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password }));
-    navigate("/");
+    history.push("/");
   };
 
   return (

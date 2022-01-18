@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import DOMPurify from "dompurify";
 import { useSelector } from "react-redux";
 import "./Question.css";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
@@ -24,9 +25,11 @@ const style = {
   p: 4,
 };
 
-function Question({ doubt, author, doubtContent }) {
+function Question({ doubt }) {
   const editorRef = useRef(null);
   const authorId = useSelector((state) => state.user.id);
+  const authorName = useSelector((state) => state.user.name);
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -39,6 +42,7 @@ function Question({ doubt, author, doubtContent }) {
           content,
           doubtId: doubt._id,
           authorId,
+          authorName,
         })
         .then((res) => {
           const answer = res.data;
@@ -49,11 +53,13 @@ function Question({ doubt, author, doubtContent }) {
     }
   };
 
-  useEffect(() => {}, []);
-
   return (
     <div className="question">
-      <h3 className="question-main">{doubtContent}</h3>
+      <h3
+        className="question-main"
+        id={"question-main-id"}
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(doubt.doubt) }}
+      ></h3>
       <div className="question-footer">
         <div className="question-author">
           <img
@@ -61,7 +67,7 @@ function Question({ doubt, author, doubtContent }) {
             alt="author"
             className="question-authorImg"
           />
-          <p>{author.name}</p>
+          <p>{doubt.author_name}</p>
           <div className="question-star">
             <StarOutlineIcon className="question-starIcon" />
             <p>{doubt.stars}</p>
@@ -80,7 +86,7 @@ function Question({ doubt, author, doubtContent }) {
             <Box sx={style}>
               <EditorBox editorRef={editorRef} />
               <div className={"question-submitAnswerBtn"}>
-                <Button onClick={handleSubmit}>Submit Doubt</Button>
+                <Button onClick={handleSubmit}>Submit Answer</Button>
               </div>
             </Box>
           </Modal>

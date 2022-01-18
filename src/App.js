@@ -1,10 +1,10 @@
-import { Routes, Route } from "react-router-dom";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Components/Home/Home";
-import AnswerPage from "./Components/AnswerPage/AnswerPage";
+import DoubtPage from "./Components/AnswerPage/DoubtPage";
 import Signup from "./Components/Signup/Signup";
 import Login from "./Components/Login/Login";
 import Profile from "./Components/UserProfile/Profile";
@@ -14,7 +14,7 @@ import { loadUser } from "./actions/authActions";
 
 function App() {
   const dispatch = useDispatch();
-
+  let match = useRouteMatch();
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
@@ -22,15 +22,15 @@ function App() {
   return (
     <div className="app">
       <Navbar />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/answer" element={<AnswerPage />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/post-doubt" element={<PostDoubt />} />
-        <Route path="/answer-doubt" element={<AnswerDoubt />} />
-      </Routes>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/doubt/:doubtId" component={DoubtPage} />
+        <Route path="/signup" component={Signup} /> />
+        <Route path="/login" component={Login} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/post-doubt" component={PostDoubt} />
+        <Route path="/answer-doubt" component={AnswerDoubt} />
+      </Switch>
     </div>
   );
 }

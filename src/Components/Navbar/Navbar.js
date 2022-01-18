@@ -1,20 +1,20 @@
 import React from "react";
 import "./Navbar.css";
 import SearchIcon from "@mui/icons-material/Search";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../actions/authActions";
 
 function Navbar(props) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const email = useSelector((state) => state.user.email);
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
-    navigate("/login");
+    history.push("/login");
   };
 
   return (

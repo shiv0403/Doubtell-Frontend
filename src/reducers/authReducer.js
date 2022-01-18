@@ -14,6 +14,7 @@ const initialState = {
   name: "",
   email: "",
   id: "",
+  imgUrl: "",
   err: {},
 };
 
@@ -34,6 +35,7 @@ const authReducer = (state = initialState, action) => {
         email: user.email,
         id: user.id,
         token: action.payload,
+        imgUrl: user.imgUrl,
         error: {},
       };
     case SIGNUP_LOGIN_FAILURE:
@@ -49,6 +51,7 @@ const authReducer = (state = initialState, action) => {
         name: null,
         email: null,
         id: null,
+        imgUrl: null,
       };
     default:
       return state;

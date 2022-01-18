@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import "./PostDoubt.css";
 import { Editor } from "@tinymce/tinymce-react";
 import Axios from "../../api/axios";
@@ -11,12 +11,13 @@ const api_key = "miwj31pnzo4xtmtcglfy7grcgi74ha8xh8jqyrfhcc72a2xy";
 
 function PostDoubt(props) {
   const editorRef = useRef(null);
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const [img, setImg] = useState("");
   const [category, setCategory] = useState("");
 
   const userId = useSelector((state) => state.user.id);
+  const userName = useSelector((state) => state.user.name);
 
   const handleSubmit = async () => {
     const content = editorRef.current.getContent();
@@ -36,8 +37,9 @@ function PostDoubt(props) {
             userId,
             category,
             filenames,
+            userName,
           }).then((resFinal) => {
-            navigate("/");
+            history.push("/");
           });
         }
       );
