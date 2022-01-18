@@ -1,18 +1,59 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import "./Question.css";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import CreateIcon from "@mui/icons-material/Create";
 import ShareIcon from "@mui/icons-material/Share";
 import { Link } from "react-router-dom";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import EditorBox from "../../EditorBox/EditorBox";
+import Button from "@mui/material/Button";
+import axios from "../../../api/axios";
 
-function Question(props) {
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: "60%",
+  height: "70%",
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
+function Question({ doubt, author, doubtContent }) {
+  const editorRef = useRef(null);
+  const authorId = useSelector((state) => state.user.id);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleSubmit = async () => {
+    const content = editorRef.current.getContent();
+    try {
+      await axios
+        .post("/api/answer/submit-answer", {
+          content,
+          doubtId: doubt._id,
+          authorId,
+        })
+        .then((res) => {
+          const answer = res.data;
+          handleClose();
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {}, []);
+
   return (
     <div className="question">
-      <h3 className="question-main">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima,
-        voluptatibus! Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Delectus, ut.
-      </h3>
+      <h3 className="question-main">{doubtContent}</h3>
       <div className="question-footer">
         <div className="question-author">
           <img
@@ -20,21 +61,34 @@ function Question(props) {
             alt="author"
             className="question-authorImg"
           />
-          <p>Author name</p>
+          <p>{author.name}</p>
           <div className="question-star">
             <StarOutlineIcon className="question-starIcon" />
-            <p>5k+</p>
+            <p>{doubt.stars}</p>
           </div>
           <div className="question-share">
             <ShareIcon style={{ fontSize: "1.1rem", marginLeft: "10px" }} />
           </div>
         </div>
+        {open && (
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+              <EditorBox editorRef={editorRef} />
+              <div className={"question-submitAnswerBtn"}>
+                <Button onClick={handleSubmit}>Submit Doubt</Button>
+              </div>
+            </Box>
+          </Modal>
+        )}
         <div className="question-answer">
-          <Link to={"/answer-doubt"}>
-            <button className="question-answerBtn">
-              <p>Answer</p> <CreateIcon style={{ fontSize: "1rem" }} />
-            </button>
-          </Link>
+          <button className="question-answerBtn" onClick={handleOpen}>
+            <p>Answer</p> <CreateIcon style={{ fontSize: "1rem" }} />
+          </button>
         </div>
       </div>
     </div>

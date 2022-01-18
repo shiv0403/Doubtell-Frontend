@@ -6,17 +6,18 @@
   box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.75);
+  background-color: #fff;
 }
 
 .feedBlock-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #c4c3c2;
+  /*border-bottom: 1px solid #c4c3c2;*/
   padding: 5px;
-  background-color: #e5e5e5;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  /*background-color: #e5e5e5;*/
+  /*border-top-left-radius: 10px;*/
+  /*border-top-right-radius: 10px;*/
 }
 
 .feedBlock-author {

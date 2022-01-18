@@ -1,42 +1,22 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import "./PostDoubt.css";
 import { Editor } from "@tinymce/tinymce-react";
-import Axios from "../../api/axios.";
-import axios from "axios";
+import Axios from "../../api/axios";
+
 import { Button } from "@mui/material";
 
 const api_key = "miwj31pnzo4xtmtcglfy7grcgi74ha8xh8jqyrfhcc72a2xy";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  p: 4,
-};
-
 function PostDoubt(props) {
   const editorRef = useRef(null);
+  const navigate = useNavigate();
+
   const [img, setImg] = useState("");
   const [category, setCategory] = useState("");
-  const [fileNames, setFileNames] = useState([]);
 
   const userId = useSelector((state) => state.user.id);
-
-  // const handleUploadImg = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append("img", img);
-  //   try {
-  //     axios.post("/api/upload-img/doubt-img", formData).then((response) => {});
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   const handleSubmit = async () => {
     const content = editorRef.current.getContent();
@@ -57,7 +37,7 @@ function PostDoubt(props) {
             category,
             filenames,
           }).then((resFinal) => {
-            console.log(resFinal.data);
+            navigate("/");
           });
         }
       );

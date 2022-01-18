@@ -1,4 +1,4 @@
-import axios from "../api/axios.";
+import axios from "../api/axios";
 import {
   SIGNUP_LOGIN_FAILURE,
   AUTH_LOADING,
