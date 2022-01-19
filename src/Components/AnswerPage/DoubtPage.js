@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./AnswerPage.css";
+import "./DoubtPage.css";
 import Trending from "../Trending/Trending";
 import Answer from "./Answer/Answer";
 import Question from "./Question/Question";
@@ -25,8 +25,8 @@ function DoubtPage(props) {
   }, []);
 
   return (
-    <div className="answerPage">
-      <div className="answerPage-answer">
+    <div className="doubtPage">
+      <div className="doubtPage-answer">
         <Question doubt={doubt} />
         {answers &&
           answers?.map((answer) => {
@@ -35,7 +35,7 @@ function DoubtPage(props) {
             }
           })}
       </div>
-      <div className="answerPage-trending">
+      <div className="doubtPage-trending">
         <Trending />
       </div>
     </div>

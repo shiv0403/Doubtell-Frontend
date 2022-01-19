@@ -1,9 +1,14 @@
-.answerPage {
+.doubtPage {
   display: flex;
   align-items: flex-start;
   justify-content: space-around;
   margin: 40px 100px;
 }
-.answerPage-trending {
-  width: 60%;
+
+.doubtPage-answer {
+  width: 70%;
+}
+
+.doubtPage-trending {
+  width: 20%;
 }
