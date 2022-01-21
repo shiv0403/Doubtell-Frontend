@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../actions/authActions";
+import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 
 function Navbar(props) {
   const dispatch = useDispatch();
@@ -38,6 +39,9 @@ function Navbar(props) {
         {email ? (
           <div className="navbar-buttons">
             <p style={{ color: "#fff", fontWeight: "bold" }}>{email}</p>{" "}
+            <Link to={"/message-page"}>
+              <ChatBubbleOutlineOutlinedIcon className={"navbar-chatIcon"} />
+            </Link>
             <button className={"navbar-login"} onClick={handleLogout}>
               Logout
             </button>

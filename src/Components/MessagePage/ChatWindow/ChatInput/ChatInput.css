@@ -1,0 +1,19 @@
+.chatInput {
+  display: flex;
+}
+
+.chatInput-icon {
+  font-size: 2rem;
+  margin: auto 10px;
+}
+
+.chatInput-input {
+  width: 85%;
+  font-size: 1rem;
+  padding: 10px;
+  margin: auto 10px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  background-color: #f4f4f4;
+}

@@ -1,0 +1,28 @@
+.chatWindow {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatWindow-header {
+}
+
+.chatWindow-message {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chatWindow-top {
+  height: 73vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.chatWindow-top::-webkit-scrollbar {
+  display: none;
+}
+
+.chatWindow-input {
+  margin-top: 20px;
+}

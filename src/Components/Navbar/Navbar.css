@@ -71,3 +71,13 @@
   color: #fff;
   font-weight: 700;
 }
+
+.navbar-chatIcon {
+  color: #fff;
+  margin: auto 20px;
+  font-size: 1rem;
+}
+
+.navbar-chatIcon:hover {
+  cursor: pointer;
+}

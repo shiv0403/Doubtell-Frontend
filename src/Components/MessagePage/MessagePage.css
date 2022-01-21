@@ -1,0 +1,26 @@
+.messagePage {
+  display: flex;
+  height: 92vh;
+}
+
+.messagePage-rooms {
+  /*padding: 10px;*/
+  flex: 1.8;
+  border-right: 1px solid #c4c3c2;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.messagePage-rooms > input {
+  padding: 7px 10px;
+  width: 80%;
+  margin: 20px;
+  font-size: 0.9rem;
+  outline: none;
+  border: 1px solid #c4c3c2;
+  border-radius: 10px;
+}
+
+.messagePage-chatWindow {
+  flex: 5;
+}

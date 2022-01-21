@@ -1,0 +1,36 @@
+.message {
+  max-width: 35%;
+  width: fit-content;
+  padding: 10px;
+  position: relative;
+}
+
+.message-mainMessage {
+  padding: 10px;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.left {
+  margin-left: auto;
+}
+
+.notMe {
+  background-color: #2b2b2b;
+  border-top-left-radius: 0;
+}
+
+.me {
+  background-color: #e5e5e5;
+  border-top-right-radius: 0;
+  color: #000;
+  position: relative;
+}
+
+.message-timestamp {
+  font-size: 12px;
+  margin-bottom: 2px;
+  font-weight: 600;
+  color: gray;
+  letter-spacing: 0.5px;
+}

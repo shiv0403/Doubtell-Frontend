@@ -1,0 +1,34 @@
+.chatHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f4f4f4;
+}
+
+.chatHeader-left {
+  display: flex;
+  align-items: center;
+}
+
+.chatHeader-img > img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.chatHeader-userDetails > p {
+  color: gray;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.chatHeader-right {
+  display: flex;
+  align-items: center;
+}
+
+.chatHeader-rightIcons {
+  font-size: 1.8rem;
+  margin-right: 10px;
+}
