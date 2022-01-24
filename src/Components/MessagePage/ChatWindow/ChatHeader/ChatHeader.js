@@ -4,7 +4,7 @@ import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import { IconButton } from "@mui/material";
 
-function ChatHeader(props) {
+function ChatHeader({ receiver }) {
   return (
     <div className={"chatHeader"}>
       <div className="chatHeader-left">
@@ -12,7 +12,8 @@ function ChatHeader(props) {
           <img src={"/assets/physics.jpg"} alt={"shivansh"} />
         </div>
         <div className="chatHeader-userDetails">
-          <h3>Shivansh Gupta</h3>
+          <h3>{receiver.name}</h3>
+          {/*todo*/}
           <p>Taking a Chill-pill</p>
         </div>
       </div>

@@ -1,16 +1,16 @@
 import React from "react";
 import "./Message.css";
 
-function Message({ isMe }) {
+function Message({ isMe, message }) {
   return (
     <div className={isMe ? "message left" : "message right"}>
-      <p className={"message-timestamp"}>12:00 PM</p>
+      <p className={"message-timestamp"}>{message.createdAt}</p>
       <p
         className={
           isMe ? "message-mainMessage me" : "message-mainMessage notMe"
         }
       >
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, veniam.
+        {message.message}
       </p>
     </div>
   );
