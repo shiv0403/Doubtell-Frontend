@@ -36,7 +36,7 @@ function Answer({ answer }) {
         });
     }
     getInfo();
-  }, [answer, answerLiked, answerDisliked]);
+  }, []);
 
   const handleLike = async () => {
     await axios
@@ -68,7 +68,6 @@ function Answer({ answer }) {
         userId,
       })
       .then((res) => {
-        console.log(res.data);
         setAnswerDisliked((prev) => !prev);
         if (answerDisliked) {
           setDislikes((prev) => prev - 1);

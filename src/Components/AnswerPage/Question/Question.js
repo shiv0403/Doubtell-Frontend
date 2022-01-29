@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DOMPurify from "dompurify";
 import { useSelector } from "react-redux";
 import "./Question.css";
 import StarOutlineIcon from "@mui/icons-material/StarOutline";
+import StarIcon from "@mui/icons-material/Star";
 import CreateIcon from "@mui/icons-material/Create";
 import ShareIcon from "@mui/icons-material/Share";
 import { Link } from "react-router-dom";
@@ -30,9 +31,61 @@ function Question({ doubt }) {
   const authorId = useSelector((state) => state.user.id);
   const authorName = useSelector((state) => state.user.name);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [starred, setStarred] = useState(false);
+  const [stars, setStars] = useState(doubt.stars);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    async function getStarInfo() {
+      await axios
+        .post("/api/user/get-starInfo", {
+          doubtId: doubt._id,
+          userId: authorId,
+        })
+        .then((res) => {
+          const data = res.data;
+          setStarred(res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+    getStarInfo();
+  }, []);
+
+  const handleStar = async () => {
+    await axios
+      .post("/api/doubt/star-doubt", {
+        doubtId: doubt._id,
+        userId: authorId,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setStarred(true);
+        setStars((prev) => prev + 1);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleUnstar = async () => {
+    await axios
+      .post("/api/doubt/un-star-doubt", {
+        doubtId: doubt._id,
+        userId: authorId,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setStarred(false);
+        setStars((prev) => prev - 1);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   const handleSubmit = async () => {
     const content = editorRef.current.getContent();
@@ -69,8 +122,16 @@ function Question({ doubt }) {
           />
           <p>{doubt.author_name}</p>
           <div className="question-star">
-            <StarOutlineIcon className="question-starIcon" />
-            <p>{doubt.stars}</p>
+            {starred ? (
+              <StarIcon className="question-starIcon" onClick={handleUnstar} />
+            ) : (
+              <StarOutlineIcon
+                className={"question-starIcon"}
+                onClick={handleStar}
+              />
+            )}
+
+            <p>{stars}</p>
           </div>
           <div className="question-share">
             <ShareIcon style={{ fontSize: "1.1rem", marginLeft: "10px" }} />

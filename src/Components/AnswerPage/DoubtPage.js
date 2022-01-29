@@ -22,12 +22,13 @@ function DoubtPage(props) {
       });
     }
     initData();
-  }, [answers]);
+  }, []);
 
   return (
     <div className="doubtPage">
       <div className="doubtPage-answer">
-        <Question doubt={doubt} />
+        {doubt && <Question doubt={doubt} />}
+
         {answers &&
           answers?.map((answer) => {
             if (answer) {
