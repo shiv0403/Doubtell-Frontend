@@ -22,7 +22,7 @@ function DoubtPage(props) {
       });
     }
     initData();
-  }, []);
+  }, [answers]);
 
   return (
     <div className="doubtPage">

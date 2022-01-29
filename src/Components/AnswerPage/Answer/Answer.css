@@ -6,7 +6,7 @@
 
 .answer-icon {
   font-size: 1.8rem;
-  margin-right: 10px;
+  /*margin-right: 10px;*/
 }
 
 .answer-icon:hover {
@@ -58,9 +58,21 @@
   padding: 5px;
 }
 
-.answer-like,
+.answer-first,
 .answer-other {
   display: flex;
   align-items: center;
   margin-left: 10px;
+}
+
+.answer-like,
+.answer-dislike {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.answer-like > p,
+.answer-dislike > p {
+  margin-left: 3px;
 }
