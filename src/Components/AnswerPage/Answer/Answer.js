@@ -7,11 +7,14 @@ import VideocamIcon from "@mui/icons-material/Videocam";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
-import ModeCommentIcon from "@mui/icons-material/ModeComment";
+import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import axios from "../../../api/axios";
+import async from "async";
+import Comments from "./Comments/Comments";
 
 function Answer({ answer }) {
   const userId = useSelector((state) => state.user.id);
@@ -19,6 +22,7 @@ function Answer({ answer }) {
   const [dislikes, setDislikes] = useState(answer.disLikes);
   const [answerLiked, setAnswerLiked] = useState(false);
   const [answerDisliked, setAnswerDisliked] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
 
   useEffect(() => {
     async function getInfo() {
@@ -30,6 +34,7 @@ function Answer({ answer }) {
         .then((res) => {
           setAnswerLiked(res.data.userLiked);
           setAnswerDisliked(res.data.userDisliked);
+          setBookmarked(res.data.userBookmark);
         })
         .catch((err) => {
           console.log(err);
@@ -84,6 +89,36 @@ function Answer({ answer }) {
       });
   };
 
+  const handleBookmark = async () => {
+    await axios
+      .post("/api/user/bookmark-answer", {
+        userId,
+        answerId: answer._id,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setBookmarked(true);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  const handleUnbookmark = async () => {
+    await axios
+      .post("/api/user/un-bookmark-answer", {
+        userId,
+        answerId: answer._id,
+      })
+      .then((res) => {
+        console.log(res.data);
+        setBookmarked(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="answer">
       <div className="answer-header">
@@ -131,9 +166,19 @@ function Answer({ answer }) {
           </div>
         </div>
         <div className="answer-second">
-          <ModeCommentIcon className="answer-icon" />
-          <BookmarkBorderIcon className="answer-icon" />
+          <ModeCommentOutlinedIcon className="answer-icon" />
+          {bookmarked ? (
+            <BookmarkIcon onClick={handleUnbookmark} />
+          ) : (
+            <BookmarkBorderIcon
+              className="answer-icon"
+              onClick={handleBookmark}
+            />
+          )}
         </div>
+      </div>
+      <div className="answer-comments">
+        <Comments answerId={answer._id} />
       </div>
     </div>
   );

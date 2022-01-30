@@ -1,0 +1,33 @@
+.reply {
+  width: 80%;
+}
+
+.reply-main {
+  display: flex;
+}
+
+.reply-input {
+  width: 80%;
+  margin: auto 10px;
+  padding: 7px;
+  height: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  letter-spacing: 0.5px;
+  background-color: #f4f4f4;
+  resize: none;
+}
+
+.reply-postBtn {
+  padding: 5px 8px;
+  color: #fff;
+  font-weight: 700;
+  background-color: #2b2b2b;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  letter-spacing: 1px;
+}
