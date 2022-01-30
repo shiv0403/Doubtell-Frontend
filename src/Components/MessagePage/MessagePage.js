@@ -36,7 +36,7 @@ function MessagePage(props) {
   }, [arrivalMessage, messages]);
 
   useEffect(() => {
-    socket?.current.emit("addUser", userId);
+    socket.current.emit("addUser", userId);
     socket.current.on("getUsers", (users) => {
       console.log(users);
     });

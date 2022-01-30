@@ -22,7 +22,7 @@ function DoubtPage(props) {
       });
     }
     initData();
-  }, []);
+  }, [doubtId]);
 
   return (
     <div className="doubtPage">

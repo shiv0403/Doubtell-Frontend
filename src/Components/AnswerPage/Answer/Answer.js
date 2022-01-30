@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { format } from "timeago.js";
+import { useHistory } from "react-router-dom";
 import DOMPurify from "dompurify";
 import "./Answer.css";
 import { Avatar } from "@mui/material";
-import VideocamIcon from "@mui/icons-material/Videocam";
+import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
@@ -13,10 +15,10 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import axios from "../../../api/axios";
-import async from "async";
 import Comments from "./Comments/Comments";
 
 function Answer({ answer }) {
+  const history = useHistory();
   const userId = useSelector((state) => state.user.id);
   const [likes, setLikes] = useState(answer.likes);
   const [dislikes, setDislikes] = useState(answer.disLikes);
@@ -119,6 +121,21 @@ function Answer({ answer }) {
       });
   };
 
+  const handleConversation = async () => {
+    await axios
+      .post("/api/conversation/new-conversation", {
+        senderId: userId,
+        receiverId: answer.author_id,
+      })
+      .then((res) => {
+        console.log(res.data);
+        history.push("/message-page");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   return (
     <div className="answer">
       <div className="answer-header">
@@ -126,11 +143,14 @@ function Answer({ answer }) {
           <Avatar />
           <div className="answer-authorDetails">
             <p className="answer-authorName">{answer.author_name}</p>
-            <p className="answer-timestamp">{answer.updatedAt}</p>
+            <p className="answer-timestamp">{format(answer.createdAt)}</p>
           </div>
         </div>
         <div className="answer-options">
-          <VideocamIcon className="answer-icon" />
+          <SendOutlinedIcon
+            className="answer-icon"
+            onClick={handleConversation}
+          />
           <MoreHorizIcon className="answer-icon" />
         </div>
       </div>

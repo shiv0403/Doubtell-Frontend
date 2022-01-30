@@ -22,7 +22,7 @@ function Comments({ answerId }) {
         });
     }
     getComments();
-  }, [comments]);
+  }, []);
 
   const handleComment = async () => {
     await axios
