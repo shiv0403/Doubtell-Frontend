@@ -3,11 +3,11 @@ import DOMPurify from "dompurify";
 import "./FeedBlock.css";
 import SendIcon from "@mui/icons-material/Send";
 import ShareIcon from "@mui/icons-material/Share";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
+import StarIcon from "@mui/icons-material/Star";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
-import axios from "../../../api/axios";
 
 function FeedBlock({ doubt }) {
   return (
@@ -57,7 +57,7 @@ function FeedBlock({ doubt }) {
           <ShareIcon />
         </div>
         <div className="feedBlock-footer-second">
-          <BookmarkBorderIcon />
+          <StarBorderIcon style={{ fontSize: "1.8rem" }} />
         </div>
       </div>
     </div>

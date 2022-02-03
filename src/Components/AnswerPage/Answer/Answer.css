@@ -6,7 +6,12 @@
 
 .answer-icon {
   font-size: 1.8rem;
-  /*margin-right: 10px;*/
+  /*margin-left: 10px;/*/
+  margin-right: 10px;
+}
+
+.answer-icon-left {
+  font-size: 1.8rem;
 }
 
 .answer-icon:hover {

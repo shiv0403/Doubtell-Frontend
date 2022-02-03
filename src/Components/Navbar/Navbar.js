@@ -38,7 +38,12 @@ function Navbar(props) {
       <>
         {email ? (
           <div className="navbar-buttons">
-            <p style={{ color: "#fff", fontWeight: "bold" }}>{email}</p>{" "}
+            <p
+              style={{ color: "#fff", fontWeight: "bold" }}
+              onClick={() => history.push("/profile")}
+            >
+              {email}
+            </p>{" "}
             <Link to={"/message-page"}>
               <ChatBubbleOutlineOutlinedIcon className={"navbar-chatIcon"} />
             </Link>
