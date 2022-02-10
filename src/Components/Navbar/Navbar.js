@@ -19,21 +19,21 @@ function Navbar(props) {
   };
 
   return (
-    <div className="bg-white flex flex-row justify-between shadow-md p-2">
-      <div className="navbar-logo">
+    <div className="bg-white flex flex-row justify-around shadow-md p-2">
+      <div className="">
         <img
           src={"/assets/doubtell-logo-1.png"}
           alt={"doubtell"}
-          className={"h-20 w-27 ml-10"}
+          className={"h-16 w-23"}
         />
       </div>
-      <div className="navbar-search">
+      <div className="items-center flex flex-row h-auto w-1/3 relative">
         <input
           type="text"
-          className="navbar-searchInput"
+          className="w-full px-2 py-2 text-base outline-0 border-b-2"
           placeholder="Search question"
         />
-        <SearchIcon className="navbar-searchIcon" />
+        <SearchIcon className={"right-2 hover:cursor-pointer"} />
       </div>
       <>
         {email ? (
@@ -52,22 +52,12 @@ function Navbar(props) {
             </button>
           </div>
         ) : (
-          <div className="navbar-buttons">
-            <button className="navbar-login">
-              <Link
-                to={"/login"}
-                style={{ textDecoration: "none", color: "#000" }}
-              >
-                Login
-              </Link>
+          <div className="flex flex-row items-center">
+            <button className="mr-5 border-2 tracking-widest border-dtcolor inline-block w-full h-auto whitespace-nowrap px-4 py-0.5 rounded-full">
+              <Link to={"/login"}>LOGIN</Link>
             </button>
-            <button className="navbar-signup">
-              <Link
-                to={"/signup"}
-                style={{ textDecoration: "none", color: "#fff" }}
-              >
-                Sign Up
-              </Link>
+            <button className="mr-0 border-2 tracking-widest bg-dtcolor border-dtcolor inline-block w-full h-auto whitespace-nowrap px-4 py-0.5 rounded-full">
+              <span className="text-white">REGISTER</span>
             </button>
           </div>
         )}
