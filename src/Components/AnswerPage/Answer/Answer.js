@@ -6,7 +6,7 @@ import DOMPurify from "dompurify";
 import "./Answer.css";
 import { Avatar } from "@mui/material";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import ShareIcon from "@mui/icons-material/Share";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
@@ -151,7 +151,7 @@ function Answer({ answer }) {
             className="answer-icon"
             onClick={handleConversation}
           />
-          <MoreHorizIcon className="answer-icon" />
+          <ShareIcon className="answer-icon" />
         </div>
       </div>
 
@@ -164,10 +164,10 @@ function Answer({ answer }) {
         <div className="answer-first">
           <div className={"answer-like"}>
             {answerLiked ? (
-              <ThumbUpIcon className="answer-icon" onClick={handleLike} />
+              <ThumbUpIcon className="answer-icon-left" onClick={handleLike} />
             ) : (
               <ThumbUpOutlinedIcon
-                className="answer-icon"
+                className="answer-icon-left"
                 onClick={handleLike}
               />
             )}
@@ -175,10 +175,13 @@ function Answer({ answer }) {
           </div>
           <div className="answer-dislike">
             {answerDisliked ? (
-              <ThumbDownIcon className="answer-icon" onClick={handleDislike} />
+              <ThumbDownIcon
+                className="answer-icon-left"
+                onClick={handleDislike}
+              />
             ) : (
               <ThumbDownOffAltIcon
-                className="answer-icon"
+                className="answer-icon-left"
                 onClick={handleDislike}
               />
             )}
@@ -186,7 +189,6 @@ function Answer({ answer }) {
           </div>
         </div>
         <div className="answer-second">
-          <ModeCommentOutlinedIcon className="answer-icon" />
           {bookmarked ? (
             <BookmarkIcon onClick={handleUnbookmark} />
           ) : (

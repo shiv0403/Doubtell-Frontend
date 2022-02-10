@@ -25,9 +25,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/doubt/:doubtId" component={DoubtPage} />
-        <Route path="/signup" component={Signup} /> />
+        <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
-        <Route path="/profile" component={Profile} />
+        <Route exact path="/profile" component={Profile} />
         <Route path="/post-doubt" component={PostDoubt} />
         <Route path="/answer-doubt" component={AnswerDoubt} />
         <Route path="/message-page" component={MessagePage} />

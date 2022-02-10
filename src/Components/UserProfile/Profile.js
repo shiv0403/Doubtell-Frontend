@@ -1,6 +1,5 @@
 import React from "react";
 import "./Profile.css";
-import { Avatar } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Trending from "../Trending/Trending";
 import FeedBlock from "../Feed/Feed-Block/FeedBlock";

@@ -19,13 +19,13 @@ function Navbar(props) {
   };
 
   return (
-    <div className="navbar">
+    <div className="bg-white flex flex-row justify-between shadow-md p-2">
       <div className="navbar-logo">
-        <h1>
-          <Link to={"/"} style={{ textDecoration: "none", color: "#fff" }}>
-            DoubTell
-          </Link>
-        </h1>
+        <img
+          src={"/assets/doubtell-logo-1.png"}
+          alt={"doubtell"}
+          className={"h-20 w-27 ml-10"}
+        />
       </div>
       <div className="navbar-search">
         <input
@@ -38,7 +38,12 @@ function Navbar(props) {
       <>
         {email ? (
           <div className="navbar-buttons">
-            <p style={{ color: "#fff", fontWeight: "bold" }}>{email}</p>{" "}
+            <p
+              style={{ color: "#fff", fontWeight: "bold" }}
+              onClick={() => history.push("/profile")}
+            >
+              {email}
+            </p>{" "}
             <Link to={"/message-page"}>
               <ChatBubbleOutlineOutlinedIcon className={"navbar-chatIcon"} />
             </Link>
