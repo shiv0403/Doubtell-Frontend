@@ -20,7 +20,9 @@ function MessagePage(props) {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("http://localhost:8900", { transports: ["websocket"] });
+    socket.current = io("https://doubtell-socket.herokuapp.com/", {
+      transports: ["websocket"],
+    });
     socket.current.on("connect", () => {});
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
