@@ -14,7 +14,7 @@ function PostDoubt(props) {
   const history = useHistory();
 
   const [img, setImg] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Physics");
 
   const userId = useSelector((state) => state.user.id);
   const userName = useSelector((state) => state.user.name);
@@ -27,25 +27,29 @@ function PostDoubt(props) {
       formData.append("img", img[key]);
     }
 
-    try {
-      await Axios.post("/api/upload-img/doubt-img/images", formData).then(
-        async (res) => {
-          const filenames = res.data;
+    await Axios.post("/api/doubt/submit", {
+      content,
+      userId,
+      category,
+      filenames: [],
+      userName,
+    })
+      .then((resFinal) => {
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-          await Axios.post("/api/doubt/submit", {
-            content,
-            userId,
-            category,
-            filenames,
-            userName,
-          }).then((resFinal) => {
-            history.push("/");
-          });
-        }
-      );
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   await Axios.post("/api/upload-img/doubt-img/images", formData).then(
+    //     async (res) => {
+    //       const filenames = res.data;
+    //     }
+    //   );
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   return (

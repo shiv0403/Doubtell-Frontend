@@ -90,20 +90,22 @@ function Question({ doubt }) {
 
   const handleSubmit = async () => {
     const content = editorRef.current.getContent();
-    try {
-      await axios
-        .post("/api/answer/submit-answer", {
-          content,
-          doubtId: doubt._id,
-          authorId,
-          authorName,
-        })
-        .then((res) => {
-          const answer = res.data;
-          handleClose();
-        });
-    } catch (err) {
-      console.log(err);
+    if (content.length > 0) {
+      try {
+        await axios
+          .post("/api/answer/submit-answer", {
+            content,
+            doubtId: doubt._id,
+            authorId,
+            authorName,
+          })
+          .then((res) => {
+            handleClose();
+            window.location.reload();
+          });
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 
