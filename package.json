@@ -1,6 +1,6 @@
 {
   "name": "doubtell-frontend",
-  "proxy": "https://doubtell-backend.herokuapp.com/",
+  "proxy": "https://doubtell-backend.herokuapp.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
