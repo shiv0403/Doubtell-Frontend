@@ -21,24 +21,23 @@ function ChatWindow({
   }, [messages]);
 
   return (
-    <div className={"chatWindow"}>
-      <div className={"chatWindow-header"}>
+    <div className={"flex flex-col"}>
+      <div>
         <ChatHeader receiver={receiver} />
       </div>
-      <div className="chatWindow-top">
+      <div
+        className="overflow-y-scroll scrollbar-hide"
+        style={{ msOverflowStyle: "none", height: "66vh" }}
+      >
         {messages.map((message) => {
           return (
-            <div ref={scrollRef}>
-              <Message
-                isMe={userId === message.senderId}
-                message={message}
-                key={message._id}
-              />
+            <div ref={scrollRef} key={message._id}>
+              <Message isMe={userId === message.senderId} message={message} />
             </div>
           );
         })}
       </div>
-      <div className="chatWindow-input">
+      <div className="">
         <ChatInput
           conversationId={convId}
           socket={socket}

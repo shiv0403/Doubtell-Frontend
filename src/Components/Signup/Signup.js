@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import "./SIgnup.css";
 import { signup } from "../../actions/authActions";
+import { TextField } from "@mui/material";
 
 function Signup(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [name, setName] = useState("");
-  const [age, setAge] = useState(0);
+  const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -24,70 +25,93 @@ function Signup(props) {
 
   return (
     <>
-      <div className="signup">
-        <h3>SIGNUP</h3>
+      <div className="w-1/4 p-4 m-auto mt-20 shadow-lg">
+        <h3 className="font-bold text-20 text-center mb-2">Signup</h3>
         <form>
-          <div className="signup-first">
-            <div className="signup-name">
-              <label>Full Name</label>
-              <br />
-              <input
-                type="text"
-                name="name"
-                placeholder="John Doe"
+          <div className="flex justify-between mt-5">
+            <div className="">
+              {/* <label>Full Name</label>
+              <br /> */}
+              <TextField
+                required
+                id="standard-required"
+                label="Full name"
+                defaultValue=""
+                type={"text"}
+                variant="standard"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="signup-age">
-              <label>Age</label>
-              <br />
-              <input
+            <div className="ml-10">
+              <TextField
+                id="standard-number"
+                label="Age"
                 type="number"
-                name="age"
-                placeholder="16"
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
+                variant="standard"
               />
             </div>
           </div>
-          <label>Email</label>
-          <br />
-          <input
-            type="email"
-            name="email"
-            placeholder={"example@example.com"}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <br />
 
-          <label>Password</label>
-          <br />
-          <input
-            type={"password"}
-            name={"password"}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <br />
-          <label>Confirm Password</label>
-          <br />
-          <input
-            type={"password"}
-            name={"confirmPassword"}
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <br />
+          <div className="mt-5">
+            <TextField
+              required
+              id="standard-required"
+              label="Email"
+              defaultValue=""
+              type={"text"}
+              variant="standard"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full"
+            />
+          </div>
+
+          <div className="mt-5">
+            <TextField
+              id="standard-password-input"
+              label="Password"
+              type="password"
+              autoComplete="current-password"
+              variant="standard"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full"
+            />
+          </div>
+
+          <div className="mt-5">
+            <TextField
+              id="standard-password-input"
+              label="Confirm password"
+              type="password"
+              autoComplete="current-password"
+              variant="standard"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="w-full"
+            />
+          </div>
         </form>
-        <div className={"signup-footer"}>
-          <button className={"signup-submit"} onClick={handleSubmit}>
-            SUBMIT
-          </button>
-          <p>
-            <Link to={"/login"}>Already have an account?</Link>
-          </p>
+        <div className={"mt-5"}>
+          <div>
+            <button
+              className="items-center w-full bg-primary p-1 rounded-sm text-white tracking-wider"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          </div>
+
+          <div className="mt-5 text-center">
+            <Link to={"/login"}>
+              <p className="cursor-pointer hover:underline">
+                Already have an account?
+              </p>
+            </Link>
+          </div>
         </div>
       </div>
     </>

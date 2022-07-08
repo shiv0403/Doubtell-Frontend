@@ -7,15 +7,19 @@ import DoubtBtn from "../DoubtBtn/DoubtBtn";
 
 function Home(props) {
   return (
-    <div className="home">
-      <div className="home-subjects">
-        <Subjects />
-        <DoubtBtn />
+    <div className="flex flex-row items-start mx-20 mt-10">
+      <div className="basis-1/5">
+        <div>
+          <Subjects />
+        </div>
+        <div className="mt-20">
+          <DoubtBtn />
+        </div>
       </div>
-      <div className="home-feed">
+      <div className="basis-1/2 mx-auto">
         <Feed />
       </div>
-      <div className="home-trend">
+      <div className="basis-1/5">
         <Trending />
       </div>
     </div>

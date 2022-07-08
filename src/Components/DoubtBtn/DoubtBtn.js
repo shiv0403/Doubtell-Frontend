@@ -4,10 +4,12 @@ import { Link } from "react-router-dom";
 
 function DoubtBtn(props) {
   return (
-    <div className="doubt-btn">
-      <p className="doubt-btn-label">Having any doubt?</p>
+    <div className="text-center">
+      <p className="mb-2 text-lightText tracking-wider">Having any doubt?</p>
       <Link to="/post-doubt">
-        <button className="doubt-btn-btn">Post a Doubt</button>
+        <button className="bg-primary text-white font-bold px-4 py-2 w-full mx-auto rounded-lg tracking-wider">
+          Post a Doubt
+        </button>
       </Link>
     </div>
   );

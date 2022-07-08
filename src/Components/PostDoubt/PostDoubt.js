@@ -50,7 +50,9 @@ function PostDoubt(props) {
 
   return (
     <div className={"postDoubt"}>
-      <h1 className={"postDoubt-heading"}>Write your Doubt...</h1>
+      <h1 className={"text-5xl text-coolGray text-center mt-12"}>
+        Write your Doubt...
+      </h1>
       <div className={"postDoubt-question"}>
         <Editor
           apiKey={api_key}
@@ -105,24 +107,25 @@ function PostDoubt(props) {
         />
       </div>
 
-      <div className="postDoubt-buttons">
-        <Button>
-          <p style={{ marginRight: "10px" }}>add images</p>
-          <input
-            type={"file"}
-            name="img"
-            className={"postDoubt-inputImg"}
-            onChange={(e) => setImg(e.target.files)}
-            multiple
-            accept="image/*"
-          />
-        </Button>
-        <select onChange={(e) => setCategory(e.target.value)}>
-          <option>Physics</option>
-          <option>Chemistry</option>
-          <option>Maths</option>
-        </select>
-        <Button onClick={handleSubmit}>post doubt</Button>
+      <div className="flex justify-between items-center w-1/2 mx-auto">
+        <div className="flex items-center">
+          <p className="mr-2 font-nexa text-secondary">
+            {"Select category".toUpperCase()}
+          </p>
+          <select onChange={(e) => setCategory(e.target.value)}>
+            <option>Physics</option>
+            <option>Chemistry</option>
+            <option>Maths</option>
+          </select>
+        </div>
+        <div>
+          <button
+            className="border-2 mt-2 px-2 py-1 text-center tracking-widest rounded-sm w-full hover:bg-primary hover:text-white hover:font-bold"
+            onClick={handleSubmit}
+          >
+            Post doubt
+          </button>
+        </div>
       </div>
     </div>
   );

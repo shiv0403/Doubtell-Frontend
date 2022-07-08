@@ -137,69 +137,76 @@ function Answer({ answer }) {
   };
 
   return (
-    <div className="answer">
-      <div className="answer-header">
-        <div className="answer-author">
+    <div
+      className="w-3/5 mx-auto mb-10"
+      style={{ border: "1px solid #c4c3c2" }}
+    >
+      <div className="flex items-center justify-between p-2 bg-offWhite">
+        <div className="flex items-center">
           <Avatar />
-          <div className="answer-authorDetails">
-            <p className="answer-authorName">{answer.author_name}</p>
-            <p className="answer-timestamp">{format(answer.createdAt)}</p>
+          <div className="ml-2">
+            <p className="font-bold text-md tracking-wide">
+              {answer.author_name}
+            </p>
+            <p className="text-xs tracking-wider">{format(answer.createdAt)}</p>
           </div>
         </div>
-        <div className="answer-options">
-          <SendOutlinedIcon
-            className="answer-icon"
-            onClick={handleConversation}
-          />
-          <ShareIcon className="answer-icon" />
+        <div>
+          <SendOutlinedIcon className="" onClick={handleConversation} />
         </div>
       </div>
 
       <div
-        className="answer-main"
+        className="p-3 leading-6"
         id={"answer-main-id"}
         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(answer.answer) }}
       ></div>
-      <div className="answer-footer">
-        <div className="answer-first">
-          <div className={"answer-like"}>
+      <div
+        className="flex items-center justify-between p-1"
+        style={{ borderTop: "1px solid #c4c3c2" }}
+      >
+        <div className="flex items-center ml-2">
+          <div className={"flex items-center mr-2"}>
             {answerLiked ? (
-              <ThumbUpIcon className="answer-icon-left" onClick={handleLike} />
+              <ThumbUpIcon className="cursor-pointer" onClick={handleLike} />
             ) : (
               <ThumbUpOutlinedIcon
-                className="answer-icon-left"
+                className="cursor-pointer"
                 onClick={handleLike}
               />
             )}
-            <p>{likes}</p>
+            <p className="ml-1">{likes}</p>
           </div>
-          <div className="answer-dislike">
+          <div className="flex items-center mr-2">
             {answerDisliked ? (
               <ThumbDownIcon
-                className="answer-icon-left"
+                className="cursor-pointer"
                 onClick={handleDislike}
               />
             ) : (
               <ThumbDownOffAltIcon
-                className="answer-icon-left"
+                className="cursor-pointer"
                 onClick={handleDislike}
               />
             )}
-            <p>{dislikes}</p>
+            <p className="ml-1">{dislikes}</p>
           </div>
         </div>
-        <div className="answer-second">
+        <div className="">
           {bookmarked ? (
-            <BookmarkIcon onClick={handleUnbookmark} />
+            <BookmarkIcon
+              onClick={handleUnbookmark}
+              className="cursor-pointer mr-1"
+            />
           ) : (
             <BookmarkBorderIcon
-              className="answer-icon"
+              className="cursor-pointer mr-1"
               onClick={handleBookmark}
             />
           )}
         </div>
       </div>
-      <div className="answer-comments">
+      <div className="mt-1">
         <Comments answerId={answer._id} />
       </div>
     </div>

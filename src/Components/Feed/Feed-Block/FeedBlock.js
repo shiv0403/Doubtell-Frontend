@@ -8,56 +8,68 @@ import StarIcon from "@mui/icons-material/Star";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
+import { format } from "timeago.js";
 
 function FeedBlock({ doubt }) {
   return (
-    <div className="feedBlock">
-      <div className="feedBlock-header">
-        <div className="feedBlock-author">
-          <Avatar />
+    <div className="shadow-lg rounded-md p-2 mb-5 w-full">
+      <div className="flex justify-between items-center p-1">
+        <div className="flex items-center">
+          <Avatar sx={{ width: 28, height: 28 }} />
           <p
             style={{
               marginLeft: "10px",
-              fontWeight: "700",
-              fontSize: "14px",
+              fontWeight: "600",
+              fontSize: "16px",
               letterSpacing: "0.5px",
             }}
           >
-            {doubt.author_name}
+            {doubt?.author_name}
           </p>
         </div>
-        <div className="feedBlock-more">
+        {/* <div className="feedBlock-more">
           <MoreHorizIcon />
-        </div>
+        </div> */}
       </div>
-      <div className="feedBlock-main">
-        <div className="feedBlock-question">
-          <Link to={`/doubt/${doubt._id}`} className={"feedBlock-navigateLink"}>
+      <div className="p-3 w-full">
+        <div className="mb-0">
+          <Link
+            to={`/doubt/${doubt?._id}`}
+            className={"feedBlock-navigateLink"}
+          >
             <h3
               id={"feedBlock-doubtHeading"}
               dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(doubt.doubt),
+                __html: DOMPurify.sanitize(doubt?.doubt),
               }}
+              className="font-bold text-lg"
             ></h3>
           </Link>
         </div>
-        <div className="feedBlock-answer">
-          {/*todo-answer*/}
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad
-            architecto corporis culpa ducimus impedit quia, quo reprehenderit
-            saepe suscipit temporibus. Blanditiis iusto laudantium maxime
-            numquam vel? Distinctio neque totam unde.
-          </p>
-        </div>
       </div>
-      <div className="feedBlock-footer">
-        <div className="feedBlock-footer-first">
-          <SendIcon />
-          <ShareIcon />
+      <div
+        className="flex items-center justify-between"
+        style={{ borderTop: "1px solid #eeeeee" }}
+      >
+        <div className="flex items-center">
+          <div className="mr-3">
+            <p className="flex items-center">
+              <span className="mr-1 font-bold">
+                {doubt?.doubt_answers.length}
+              </span>{" "}
+              answers
+            </p>
+          </div>
+          <div>
+            <p className="flex items-center">
+              <span className="mr-1 font-bold">{doubt?.stars}</span> stars
+            </p>
+          </div>
         </div>
         <div className="feedBlock-footer-second">
-          <StarBorderIcon style={{ fontSize: "1.8rem" }} />
+          <div>
+            <p className="text-coolGray text-sm">{format(doubt?.createdAt)}</p>
+          </div>
         </div>
       </div>
     </div>

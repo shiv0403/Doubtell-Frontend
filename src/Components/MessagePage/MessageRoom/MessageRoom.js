@@ -9,6 +9,7 @@ function MessageRoom({
   setMessages,
   setUserClicked,
   setConvId,
+  setConversation,
 }) {
   const userId = useSelector((state) => state.user.id);
   const [user, setUser] = useState("");
@@ -31,6 +32,7 @@ function MessageRoom({
   const getMessages = async () => {
     setUserClicked(user);
     setConvId(conversation._id);
+    setConversation(conversation);
     try {
       await axios
         .get(`/api/message/get-messages/${conversation._id}`)

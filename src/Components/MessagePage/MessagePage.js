@@ -11,35 +11,44 @@ function MessagePage(props) {
   const user = useSelector((state) => state.user);
   const [conversations, setConversations] = useState([]);
   const [convId, setConvId] = useState("");
+  const [conversation, setConversation] = useState("");
+
   const [messages, setMessages] = useState([]);
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [userClicked, setUserClicked] = useState("");
+
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:5000");
+    socket.current = io("ws://localhost:8900");
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         senderId: data.senderId,
-        message: data.message,
+        message: data.text,
         createdAt: Date.now(),
       });
     });
+
+    return () => {
+      setArrivalMessage("");
+    };
   }, []);
 
+  //whenever a new message comes
   useEffect(() => {
     arrivalMessage &&
-      messages.filter(
-        (message) => message.senderId === arrivalMessage.senderId
-      ) &&
+      conversation?.membersId.includes(arrivalMessage.senderId) &&
       setMessages((prev) => [...prev, arrivalMessage]);
-  }, [arrivalMessage, messages]);
+  }, [arrivalMessage, conversation]);
 
   useEffect(() => {
-    socket.current.emit("addUser", userId);
-    socket.current.on("getUsers", (users) => {
-      console.log(users);
-    });
+    //connecting this user to socket server
+    socket.current.emit("addUser", user?.id);
+
+    //getting the online users
+    // socket.current.on("getUsers", (users) => {
+    //   console.log(users);
+    // });
   }, [user]);
 
   useEffect(() => {
@@ -57,26 +66,34 @@ function MessagePage(props) {
   }, [userId]);
 
   return (
-    <div className="messagePage">
-      <div className="messagePage-rooms">
-        <input type={"text"} name={"roomName"} placeholder={"Search Chats"} />
-        {conversations &&
-          conversations?.map((conversation) => {
-            return (
-              <div>
+    <div className="flex w-4/5 shadow-lg mx-auto h-80v mt-8">
+      <div className="overflow-y-scroll overflow-x-hidden basis-1/4">
+        <div className="w-4/5 mx-auto p-1">
+          <input
+            type={"text"}
+            name={"roomName"}
+            placeholder={"Search Chats"}
+            className="px-2 py-1 w-full mx-auto my-2 text-sm rounded-md outline-none"
+            style={{ border: "1px solid #c4c3c2" }}
+          />
+        </div>
+        <div style={{ borderTop: "1px solid #eeeeee" }}>
+          {conversations &&
+            conversations?.map((conversation) => (
+              <div key={conversation.id}>
                 <MessageRoom
                   conversation={conversation}
                   setConvId={setConvId}
                   messages={messages}
                   setMessages={setMessages}
                   setUserClicked={setUserClicked}
-                  key={conversation.id}
+                  setConversation={setConversation}
                 />
               </div>
-            );
-          })}
+            ))}
+        </div>
       </div>
-      <div className="messagePage-chatWindow">
+      <div className="basis-3/4">
         {userClicked ? (
           <ChatWindow
             receiver={userClicked}
@@ -87,7 +104,11 @@ function MessagePage(props) {
             arrivalMessage={arrivalMessage}
           />
         ) : (
-          <p>Select any chat</p>
+          <div className="w-full h-80v text-center">
+            <p className="mt-60 tracking-wider text-3xl text-coolGray">
+              Select a chat / start new conversation
+            </p>
+          </div>
         )}
       </div>
     </div>

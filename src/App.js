@@ -27,7 +27,7 @@ function App() {
         <Route path="/doubt/:doubtId" component={DoubtPage} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
-        <Route exact path="/profile" component={Profile} />
+        <Route path="/profile" component={Profile} />
         <Route path="/post-doubt" component={PostDoubt} />
         <Route path="/answer-doubt" component={AnswerDoubt} />
         <Route path="/message-page" component={MessagePage} />

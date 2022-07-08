@@ -6,25 +6,31 @@ import { IconButton } from "@mui/material";
 
 function ChatHeader({ receiver }) {
   return (
-    <div className={"chatHeader"}>
-      <div className="chatHeader-left">
-        <div className="chatHeader-img">
-          <img src={"/assets/physics.jpg"} alt={"shivansh"} />
+    <div className={"flex justify-between px-4 py-2 bg-secondary"}>
+      <div className="flex items-center">
+        <div>
+          <img
+            className="h-10 w-10 rounded-3xl mr-2"
+            src={"/assets/physics.jpg"}
+            alt={"shivansh"}
+          />
         </div>
-        <div className="chatHeader-userDetails">
+        <div>
           <h3>{receiver.name}</h3>
           {/*todo*/}
-          <p>Taking a Chill-pill</p>
+          <p className="text-coolGray text-xs tracking-wider">
+            Taking a Chill-pill
+          </p>
         </div>
       </div>
-      <div className="chatHeader-right">
-        <IconButton className={"chatHeader-rightIcons"}>
+      {/* <div className="flex items-center">
+        <IconButton>
           <AttachFileOutlinedIcon />
         </IconButton>
         <IconButton>
           <MoreHorizOutlinedIcon />
         </IconButton>
-      </div>
+      </div> */}
     </div>
   );
 }

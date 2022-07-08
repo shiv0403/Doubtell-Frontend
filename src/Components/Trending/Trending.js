@@ -13,7 +13,6 @@ function Trending(props) {
       await axios
         .get("/api/doubt/trendings")
         .then((res) => {
-          console.log(res.data);
           setTrendings(res.data);
         })
         .catch((err) => {
@@ -24,23 +23,31 @@ function Trending(props) {
   }, []);
 
   return (
-    <div className="trending">
-      <h2 className="trending-heading">Trending Doubts</h2>
-      {trendings &&
-        trendings?.map((doubt) => {
-          return (
-            <div
-              className="trending-doubt"
-              onClick={() => history.push(`/doubt/${doubt._id}`)}
-            >
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: DOMPurify.sanitize(doubt.doubt),
-                }}
-              ></p>
-            </div>
-          );
-        })}
+    <div className="w-full rounded-t-md p-0">
+      <h2 className="text-center bg-primary p-2 text-white tracking-wider font-bold rounded-t-md">
+        Trending Doubts
+      </h2>
+      <div style={{ border: "1px solid lightGray" }}>
+        {trendings &&
+          trendings?.map((doubt) => {
+            return (
+              <div
+                className="cursor-pointer p-2"
+                style={{ borderBottom: "1px solid lightGray" }}
+                onClick={() => history.push(`/doubt/${doubt._id}`)}
+                key={doubt._id}
+              >
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      DOMPurify.sanitize(doubt.doubt).slice(0, 50) + "...",
+                  }}
+                  className="text-12"
+                ></p>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 }

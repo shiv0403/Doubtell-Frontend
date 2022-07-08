@@ -2,31 +2,59 @@ import React, { useEffect, useState } from "react";
 import "./Feed.css";
 import FeedBlock from "./Feed-Block/FeedBlock";
 import axios from "../../api/axios";
+import queryString from "query-string";
+import { useLocation } from "react-router-dom";
+import { TailSpin } from "react-loader-spinner";
 
 function Feed(props) {
+  const location = useLocation();
+
+  let searchQuery = queryString.parse(location.search)?.query || "";
+  let categoryQuery = queryString.parse(location.search)?.category || "";
+
   const [doubts, setDoubts] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getDoubts() {
-      try {
-        await axios.get("/api/doubt/get-doubts").then((res) => {
+      setLoading(true);
+
+      await axios
+        .get("/api/doubt/get-doubts", {
+          params: {
+            search: searchQuery,
+            category: categoryQuery,
+          },
+        })
+        .then((res) => {
           const data = res.data;
           setDoubts(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
         });
-      } catch (err) {
-        console.log(err);
-      }
     }
+    setDoubts([]);
     getDoubts();
-  }, []);
+  }, [location]);
 
   return (
-    <div className="feed">
+    <div className="relative w-4/5 mx-auto">
+      {loading && (
+        <div className="absolute top-40 bottom-1/2 right-1/2">
+          <TailSpin
+            height="100"
+            width="100"
+            color="black"
+            ariaLabel="loading"
+          />
+        </div>
+      )}
       {doubts &&
         doubts.map((doubt) => {
-          if (doubt) {
-            return <FeedBlock doubt={doubt} key={doubt._id} />;
-          }
+          return doubt ? <FeedBlock doubt={doubt} key={doubt._id} /> : <></>;
         })}
     </div>
   );

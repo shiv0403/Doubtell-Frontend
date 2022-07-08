@@ -27,15 +27,22 @@ function Reply({ comment, answerId }) {
   };
 
   return (
-    <div className={"reply"}>
-      <div className={"reply-main"}>
+    <div className={"w-full"}>
+      <div className={"flex items-start"}>
         <textarea
           placeholder={"Write your reply..."}
           value={reply}
           onChange={(e) => setReply(e.target.value)}
-          className={"reply-input"}
+          className={
+            "w-4/5 mx-2 h-7 rounded-md px-2 py-1 text-sm bg-offWhite resize-none border-none outline-none"
+          }
         />
-        <button onClick={handleReply} className={"reply-postBtn"}>
+        <button
+          onClick={handleReply}
+          className={
+            "py-1 px-2 bg-primary ml-1 border-none outline-none rounded-md text-white text-sm tracking-wider"
+          }
+        >
           Post
         </button>
       </div>

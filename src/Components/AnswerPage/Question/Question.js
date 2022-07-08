@@ -12,6 +12,7 @@ import Box from "@mui/material/Box";
 import EditorBox from "../../EditorBox/EditorBox";
 import Button from "@mui/material/Button";
 import axios from "../../../api/axios";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 const style = {
   position: "absolute",
@@ -107,34 +108,41 @@ function Question({ doubt }) {
   };
 
   return (
-    <div className="question">
+    <div className="w-3/5 mx-auto mb-10">
       <h3
-        className="question-main"
+        className="font-bold text-2xl"
         id={"question-main-id"}
         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(doubt.doubt) }}
       ></h3>
-      <div className="question-footer">
-        <div className="question-author">
+      <div className="flex items-center justify-between mt-2">
+        <div className="flex items-center">
           <img
             src="/assets/physics.jpg"
             alt="author"
-            className="question-authorImg"
+            className="rounded-2xl h-7 w-7 mr-2"
           />
           <p>{doubt.author_name}</p>
-          <div className="question-star">
+          <div className="flex items-center">
             {starred ? (
-              <StarIcon className="question-starIcon" onClick={handleUnstar} />
+              <StarIcon
+                className="ml-3 mr-1 cursor-pointer"
+                onClick={handleUnstar}
+              />
             ) : (
               <StarOutlineIcon
-                className={"question-starIcon"}
+                className="ml-3 mr-1 cursor-pointer"
                 onClick={handleStar}
               />
             )}
 
-            <p>{stars}</p>
+            <p className="text-lg">{stars}</p>
           </div>
-          <div className="question-share">
-            <ShareIcon style={{ fontSize: "1.1rem", marginLeft: "10px" }} />
+          <div className="text-lg">
+            <ContentCopyIcon
+              className="mx-3 cursor-pointer"
+              fontSize="small"
+              onClick={() => navigator.clipboard.writeText(window.location)}
+            />
           </div>
         </div>
         {open && (
@@ -146,15 +154,19 @@ function Question({ doubt }) {
           >
             <Box sx={style}>
               <EditorBox editorRef={editorRef} />
-              <div className={"question-submitAnswerBtn"}>
+              <div className={"mt-2"}>
                 <Button onClick={handleSubmit}>Submit Answer</Button>
               </div>
             </Box>
           </Modal>
         )}
-        <div className="question-answer">
-          <button className="question-answerBtn" onClick={handleOpen}>
-            <p>Answer</p> <CreateIcon style={{ fontSize: "1rem" }} />
+        <div className="">
+          <button
+            className="flex items-center bg-primary text-white py-1 px-2 rounded-md outline-none font-bold"
+            onClick={handleOpen}
+          >
+            <p className="mr-1 ml-1">Answer</p>{" "}
+            <CreateIcon style={{ fontSize: "1rem" }} />
           </button>
         </div>
       </div>

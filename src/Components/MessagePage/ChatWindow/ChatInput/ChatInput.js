@@ -18,10 +18,12 @@ function ChatInput({
   const userId = useSelector((state) => state.user.id);
 
   const handleSubmit = async () => {
+    console.log("receiver-->", receiver._id);
+    //sending the message to socket server
     socket.current.emit("sendMessage", {
       senderId: userId,
       receiverId: receiver._id,
-      message,
+      text: message,
     });
 
     try {
@@ -51,24 +53,26 @@ function ChatInput({
   };
 
   return (
-    <div className={"chatInput"}>
-      <IconButton className={"chatInput-icon"} style={{ marginLeft: "10px" }}>
+    <div className={"flex items-center mx-2 mb-2"}>
+      <IconButton>
         <EmojiEmotionsOutlinedIcon />
       </IconButton>
-      <IconButton className={"chatInput-icon"}>
-        <MicOutlinedIcon />
-      </IconButton>
+
       <input
         type={"text"}
         name={"message"}
-        className={"chatInput-input"}
+        className={
+          "tracking-wider w-full px-3 py-2 rounded-md outline-none bg-secondary my-atuo mx-2"
+        }
         placeholder={"Enter your message"}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <IconButton className={"chatInput-icon"} onClick={handleSubmit}>
-        <SendOutlinedIcon />
-      </IconButton>
+      <div className="">
+        <IconButton onClick={handleSubmit}>
+          <SendOutlinedIcon />
+        </IconButton>
+      </div>
     </div>
   );
 }

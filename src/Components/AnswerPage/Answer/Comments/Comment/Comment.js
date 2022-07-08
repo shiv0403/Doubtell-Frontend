@@ -16,7 +16,6 @@ function Comment({ comment, answerId }) {
   const userId = useSelector((state) => state.user.id);
 
   const viewCommentReply = async (event, commentId) => {
-    console.log(commentId);
     event.target.style.display = "none";
     await axios
       .get(`/api/comment/replies-get/${commentId}`)
@@ -32,7 +31,7 @@ function Comment({ comment, answerId }) {
           //header
           let img = document.createElement("img");
           let content = document.createElement("p");
-          img.className = "comments-userImg";
+          img.className = "h-6 w-6 rounded-2xl mr-1";
           img.src = "/assets/chemistry.jpg";
           content.innerHTML = replies_array[i].comment;
 
@@ -40,11 +39,11 @@ function Comment({ comment, answerId }) {
           reply_header.appendChild(content);
 
           //header class-name
-          reply_header.className = "comment-replies-div";
+          reply_header.className = "mt-1 flex items-center";
 
           //footer
           let img_comment = document.createElement("img");
-          img_comment.className = "comment-img";
+          img_comment.className = "h-5 w-5 ml-6";
           img_comment.src = commentImgLink;
           img_comment.addEventListener("click", () => {
             setReplyView((prev) => !prev);
@@ -54,9 +53,11 @@ function Comment({ comment, answerId }) {
           let reply_div = document.createElement("div");
           let reply_input = document.createElement("textarea");
           let reply_postBtn = document.createElement("button");
-          reply_input.className = "reply-input";
+          reply_input.className =
+            "w-4/5 mx-2 h-7 rounded-md px-2 py-1 text-sm bg-offWhite resize-none border-none outline-none";
           reply_input.placeholder = "Write your reply...";
-          reply_postBtn.className = "reply-postBtn";
+          reply_postBtn.className =
+            "tracking-wider py-1 px-2 bg-primary ml-1 border-none outline-none rounded-md text-white text-xs";
           reply_postBtn.innerHTML = "Reply";
 
           //reply to comment
@@ -87,8 +88,9 @@ function Comment({ comment, answerId }) {
           reply_footer.appendChild(reply_div);
 
           let replyBtn = document.createElement("button");
-          replyBtn.innerHTML = "View Replies";
-          replyBtn.className = "comment-replyBtn";
+          replyBtn.innerHTML = "View replies";
+          replyBtn.className =
+            "py-1 px-2 bg-primary ml-2 border-none outline-none rounded-md text-white text-sm";
 
           reply_footer.appendChild(replyBtn);
 
@@ -129,28 +131,31 @@ function Comment({ comment, answerId }) {
   const handleReply = () => {};
 
   return (
-    <div className={"comment"}>
-      <div className="comment-content">
+    <div className={"mt-4"}>
+      <div className="flex items-center">
         <img
           src={"/assets/chemistry.jpg"}
           alt={"user"}
-          className={"comments-userImg"}
+          className={"h-6 w-6 rounded-2xl"}
         />
-        <p>{comment.comment}</p>
+        <p className="ml-2 text-md">{comment.comment}</p>
       </div>
       <div className="comment-replies comment-first-rep">
         <div className="comment-replies-header">
           <ModeCommentOutlinedIcon
+            fontSize="small"
             onClick={() => setReplyInput((prev) => !prev)}
           />
           {/*{replyInput && <Reply />}*/}
           {comment.replies.length > 0 && !replyInput ? (
             <button
-              className={"comment-replyBtn"}
+              className={
+                "py-1 px-2 bg-primary ml-2 border-none outline-none rounded-md text-white text-xs"
+              }
               onClick={(e) => viewCommentReply(e, comment._id)}
               style={{ display: `${viewReply ? "block" : "none"}` }}
             >
-              View Replies
+              View replies
             </button>
           ) : (
             <Reply comment={comment} answerId={answerId} />

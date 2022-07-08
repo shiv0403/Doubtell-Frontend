@@ -1,10 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Profile.css";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Trending from "../Trending/Trending";
 import FeedBlock from "../Feed/Feed-Block/FeedBlock";
+import { useSelector } from "react-redux";
+import axios from "../../api/axios";
 
 function Profile(props) {
+  const userId = useSelector((state) => state.user.id);
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function getInfo() {
+      await axios
+        .get(`/api/user/get-user/${userId}`)
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+
+    getInfo();
+  }, []);
+
   return (
     <>
       <div className={"profile"}>
