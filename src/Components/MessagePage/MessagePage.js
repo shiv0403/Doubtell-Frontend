@@ -20,7 +20,8 @@ function MessagePage(props) {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("http://localhost:8900", { transports: ["websocket"] });
+    socket.current.on("connect", () => {});
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         senderId: data.senderId,
