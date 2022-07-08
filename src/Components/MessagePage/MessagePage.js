@@ -21,6 +21,10 @@ function MessagePage(props) {
 
   useEffect(() => {
     socket.current = io("https://doubtell-socket.herokuapp.com/", {
+      cors: {
+        origin: "https://doubtell-socket.herokuapp.com/",
+        credentails: true,
+      },
       transports: ["websocket"],
     });
     socket.current.on("connect", () => {});
