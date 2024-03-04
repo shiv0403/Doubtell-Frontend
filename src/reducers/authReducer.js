@@ -28,7 +28,6 @@ const authReducer = (state = initialState, action) => {
     case USER_LOADED:
     case SIGNUP_LOGIN_SUCCESS:
       const user = jwtDecode(action.payload);
-      console.log("user-->", user);
       return {
         ...state,
         loading: false,
