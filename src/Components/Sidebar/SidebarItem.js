@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 
-function SidebarItem({ active, alert, icon, text }) {
+function SidebarItem({ active, alert, icon, text, expanded }) {
   return (
     <li
-      className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer
+      className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors
     ${
       active
-        ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800"
-        : "hover:bg-indigo-50 text-gray-600"
+        ? "bg-gradient-to-tr from-lightbrown to-lightbrown text-gray"
+        : "hover:bg-lightbrown text-gray"
     }`}
     >
       {icon}
-      <span className="w-52 ml-3">{text}</span>
+      <span
+        className={`whitespace-nowrap overflow-hidden transition-all ${
+          expanded ? "w-52 ml-3" : "w-0"
+        }`}
+      >
+        {text}
+      </span>
       {alert && (
-        <div className={`absolute right-2 w-2 h-2 rounded bg-indigo-400`} />
+        <div
+          className={`absolute right-2 w-2 h-2 rounded bg-gray overflow-hidden transition-all ${
+            expanded ? "w-0" : "top-2 right-3"
+          }`}
+        />
       )}
     </li>
   );

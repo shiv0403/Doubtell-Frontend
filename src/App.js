@@ -1,5 +1,5 @@
 import { Switch, Route } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
@@ -28,55 +28,66 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 function App() {
   const isActive = true;
   const dispatch = useDispatch();
+
+  const [expanded, setExpanded] = useState(true);
+
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
 
   return (
-    <div className="app">
-      {/* <Navbar /> */}
-      <Sidebar>
-        <SidebarItem
-          active={true}
-          text={"Home"}
-          alert={true}
-          icon={isActive ? <HomeIcon /> : <HomeOutlinedIcon />}
-        />
-        <SidebarItem
-          active={false}
-          text={"Post a doubt"}
-          alert={false}
-          icon={!isActive ? <PostAddIcon /> : <PostAddOutlinedIcon />}
-        />
-        <SidebarItem
-          active={false}
-          text={"Bookmarks"}
-          alert={false}
-          icon={!isActive ? <BookmarkIcon /> : <BookmarkBorderOutlinedIcon />}
-        />
-        <SidebarItem
-          active={false}
-          text={"Starred"}
-          alert={false}
-          icon={!isActive ? <StarIcon /> : <StarBorderOutlinedIcon />}
-        />
-        <SidebarItem
-          active={false}
-          text={"Settings"}
-          alert={false}
-          icon={!isActive ? <SettingsIcon /> : <SettingsOutlinedIcon />}
-        />
-      </Sidebar>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/doubt/:doubtId" component={DoubtPage} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/login" component={Login} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/post-doubt" component={PostDoubt} />
-        <Route path="/answer-doubt" component={AnswerDoubt} />
-        <Route path="/message-page" component={MessagePage} />
-      </Switch>
+    <div className="flex items-start">
+      <div className="">
+        <Sidebar expanded={expanded} setExpanded={setExpanded}>
+          <SidebarItem
+            expanded={expanded}
+            active={true}
+            text={"Home"}
+            alert={true}
+            icon={isActive ? <HomeIcon /> : <HomeOutlinedIcon />}
+          />
+          <SidebarItem
+            expanded={expanded}
+            active={false}
+            text={"Post a doubt"}
+            alert={false}
+            icon={!isActive ? <PostAddIcon /> : <PostAddOutlinedIcon />}
+          />
+          <SidebarItem
+            expanded={expanded}
+            active={false}
+            text={"Bookmarks"}
+            alert={false}
+            icon={!isActive ? <BookmarkIcon /> : <BookmarkBorderOutlinedIcon />}
+          />
+          <SidebarItem
+            expanded={expanded}
+            active={false}
+            text={"Starred"}
+            alert={false}
+            icon={!isActive ? <StarIcon /> : <StarBorderOutlinedIcon />}
+          />
+          <SidebarItem
+            expanded={expanded}
+            active={false}
+            text={"Settings"}
+            alert={false}
+            icon={!isActive ? <SettingsIcon /> : <SettingsOutlinedIcon />}
+          />
+        </Sidebar>
+      </div>
+      <div className="h-screen w-full overflow-scroll">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/doubt/:doubtId" component={DoubtPage} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/post-doubt" component={PostDoubt} />
+          <Route path="/answer-doubt" component={AnswerDoubt} />
+          <Route path="/message-page" component={MessagePage} />
+        </Switch>
+      </div>
     </div>
   );
 }
