@@ -76,7 +76,7 @@ function App() {
           />
         </Sidebar>
       </div>
-      <div className="h-screen w-full overflow-scroll">
+      <div className="h-screen w-full overflow-scroll mt-10">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/doubt/:doubtId" component={DoubtPage} />

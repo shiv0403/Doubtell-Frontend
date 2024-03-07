@@ -7,8 +7,8 @@ import DoubtBtn from "../DoubtBtn/DoubtBtn";
 
 function Home(props) {
   return (
-    <div className="flex flex-row items-start mx-20 mt-10">
-      <div>
+    <div className="flex items-start">
+      <div className="basis-2/3">
         <Feed />
       </div>
       <div>

@@ -5,6 +5,7 @@ import axios from "../../api/axios";
 import queryString from "query-string";
 import { useLocation } from "react-router-dom";
 import { TailSpin } from "react-loader-spinner";
+import SearchBar from "../SearchBar/SearchBar";
 
 function Feed(props) {
   const location = useLocation();
@@ -32,7 +33,6 @@ function Feed(props) {
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err);
           setLoading(false);
         });
     }
@@ -41,7 +41,7 @@ function Feed(props) {
   }, [location]);
 
   return (
-    <div className="relative w-4/5 mx-auto">
+    <div className="relative w-9/12 mx-auto">
       {loading && (
         <div className="absolute top-40 bottom-1/2 right-1/2">
           <TailSpin
@@ -52,6 +52,33 @@ function Feed(props) {
           />
         </div>
       )}
+      <div className="mb-4">
+        <SearchBar />
+      </div>
+      {doubts &&
+        doubts.map((doubt) => {
+          return doubt ? <FeedBlock doubt={doubt} key={doubt._id} /> : <></>;
+        })}
+      {doubts &&
+        doubts.map((doubt) => {
+          return doubt ? <FeedBlock doubt={doubt} key={doubt._id} /> : <></>;
+        })}
+      {doubts &&
+        doubts.map((doubt) => {
+          return doubt ? <FeedBlock doubt={doubt} key={doubt._id} /> : <></>;
+        })}
+      {doubts &&
+        doubts.map((doubt) => {
+          return doubt ? <FeedBlock doubt={doubt} key={doubt._id} /> : <></>;
+        })}
+      {doubts &&
+        doubts.map((doubt) => {
+          return doubt ? <FeedBlock doubt={doubt} key={doubt._id} /> : <></>;
+        })}
+      {doubts &&
+        doubts.map((doubt) => {
+          return doubt ? <FeedBlock doubt={doubt} key={doubt._id} /> : <></>;
+        })}
       {doubts &&
         doubts.map((doubt) => {
           return doubt ? <FeedBlock doubt={doubt} key={doubt._id} /> : <></>;

@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 function SidebarItem({ active, alert, icon, text, expanded }) {
   return (
     <li
-      className={`relative flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-colors
+      className={`relative flex items-center py-2 px-3 my-2 font-medium rounded-md cursor-pointer transition-colors
     ${
       active
         ? "bg-gradient-to-tr from-lightbrown to-lightbrown text-gray"
